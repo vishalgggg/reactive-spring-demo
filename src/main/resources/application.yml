@@ -3,3 +3,6 @@ spring:
     url: ${DATABASE_HOST:r2dbc:postgresql://localhost:5432/hr-service}
     username: ${DATABASE_USERNAME:postgres}
     password: ${DATABASE_PASSWORD:postgres}
+  
+
+  
