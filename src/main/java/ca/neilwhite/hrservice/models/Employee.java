@@ -15,8 +15,11 @@ import java.util.Map;
 public class Employee {
     @Id
     private Long id;
+    @Column("first_name")
     private String firstName;
+    @Column("last_name")
     private String lastName;
+    @Column("position")
     private String position;
 
     @Column("is_full_time")

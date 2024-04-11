@@ -1,5 +1,8 @@
 package ca.neilwhite.hrservice.controllers;
 
+import ca.neilwhite.hrservice.exceptions.AuthorNotFoundException;
+import ca.neilwhite.hrservice.exceptions.BookAlreadyExist;
+import ca.neilwhite.hrservice.exceptions.BookNotFound;
 import ca.neilwhite.hrservice.exceptions.DepartmentAlreadyExistsException;
 import ca.neilwhite.hrservice.exceptions.DepartmentNotFoundException;
 import ca.neilwhite.hrservice.exceptions.EmployeeNotFoundException;
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.bind.support.WebExchangeBindException;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Slf4j
 @RestControllerAdvice
@@ -20,18 +23,22 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler({
             DepartmentNotFoundException.class,
-            EmployeeNotFoundException.class
+            EmployeeNotFoundException.class,
+            BookNotFound.class,
+            AuthorNotFoundException.class
     })
     ResponseEntity<String> handleNotFound(RuntimeException exception) {
         log.debug("handling exception:: " + exception);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 
-    @ExceptionHandler({DepartmentAlreadyExistsException.class})
+    @ExceptionHandler({DepartmentAlreadyExistsException.class,BookAlreadyExist.class})
     ResponseEntity<String> handleBadRequest(RuntimeException exception) {
         log.debug("handling exception:: " + exception);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
     }
+
+
 
     @ExceptionHandler(WebExchangeBindException.class)
     public ResponseEntity<List<String>> handleException(WebExchangeBindException e) {

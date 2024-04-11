@@ -146,7 +146,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     private Mono<Department> saveManager(Department department) {
         return Mono.justOrEmpty(department.getManager())
                 .flatMap(employeeRepository::save)
-                .doOnNext(department::setManager)
+                // .doOnNext(department::setManager)
                 .thenReturn(department);
     }
 
@@ -160,7 +160,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return Flux.fromIterable(department.getEmployees())
                 .flatMap(this.employeeRepository::save)
                 .collectList()
-                .doOnNext(department::setEmployees)
+                // .doOnNext(department::setEmployees)
                 .thenReturn(department);
     }
 
