@@ -26,7 +26,7 @@ public class Author {
        
     
         public static Author fromRow(Map<String, Object> row) {
-            if (row.get("e_id") != null) {
+            if (row.get("a_id") != null) {
                 return Author.builder()
                         .id((Long.parseLong(row.get("a_id").toString())))
                         .firstName((String) row.get("a_firstName"))
@@ -39,18 +39,7 @@ public class Author {
     
         }
     
-        public static Author managerFromRow(Map<String, Object> row) {
-            if (row.get("m_id") != null) {
-                return Author.builder()
-                        .id((Long.parseLong(row.get("a_id").toString())))
-                        .firstName((String) row.get("a_firstName"))
-                        .lastName((String) row.get("a_lastName"))
-                        
-                        .build();
-            } else {
-                return null;
-            }
-        }
+       
     }
     
 

@@ -22,7 +22,7 @@ import ca.neilwhite.hrservice.models.Department;
         private static final String SELECT_QUERY = """
                 SELECT b.id b_id, b.name b_name
                     , a.id a_id, a.first_name a_firstName,
-                    a.last_name a_lastName, 
+                    a.last_name a_lastName 
                 FROM books b
                 
                 LEFT JOIN book_authors ba ON ba.book_id = b.id
@@ -122,7 +122,7 @@ import ca.neilwhite.hrservice.models.Department;
          */
         private Mono<Book> saveBook(Book book) {
             if (book.getId() == null) {
-                return client.sql("INSERT INTO books(ame) VALUES(:name)")
+                return client.sql("INSERT INTO books(name) VALUES(:name)")
                         .bind("name", book.getName())
                         .filter((statement, executeFunction) -> statement.returnGeneratedValues("id").execute())
                         .fetch().first()
@@ -179,7 +179,7 @@ import ca.neilwhite.hrservice.models.Department;
             return Flux.fromIterable(book.getAuthors())
                     .flatMap(authors -> client.sql(query)
                             .bind("id", book.getId())
-                            .bind("empId", authors.getId())
+                            .bind("autId", authors.getId())
                             .fetch().rowsUpdated())
                     .collectList()
                     .thenReturn(book);
