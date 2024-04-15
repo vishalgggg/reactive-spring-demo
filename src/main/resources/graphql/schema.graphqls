@@ -3,8 +3,14 @@ type Author{
     firstName:String
     lastName:String
 }
+type Book{
+    id:ID
+    name:String
+    authors:[Author]
+}
 type Query{
     getAllAuthors:[Author]
+    getAllBooks:[Book]
 }
 type Mutation {
 
