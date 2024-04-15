@@ -3,7 +3,9 @@ type Author{
     firstName:String
     lastName:String
 }
-
+type Query{
+    getAllAuthors:[Author]
+}
 type Mutation {
 
     addAuthor(authorInput:AuthorInput!):Author
@@ -12,6 +14,4 @@ input AuthorInput {
     firstName:String!
     lastName:String!
 }
-type Mutation{
-    addBook(bookInput:BookInput!):Book
-}
+
