@@ -86,6 +86,12 @@
             <artifactId>r2dbc</artifactId>
             <scope>test</scope>
         </dependency>
+    
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjrt</artifactId>
+        <version>1.9.4</version>
+      </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
