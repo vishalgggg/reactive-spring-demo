@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 public class LoggingAspect {
 
-    @Around("execution(public * ca.neilwhite.hrservice.controllers.*.*(..)")
+    @Around("execution(public * ca.neilwhite.hrservice.controllers.*.*(..))")
     public Object logInputAndExecutionTime(ProceedingJoinPoint pjp) throws Throwable {
         long t = System.currentTimeMillis();
         log.info("=> {} :: args: {}", pjp.getSignature().toShortString(), pjp.getArgs());

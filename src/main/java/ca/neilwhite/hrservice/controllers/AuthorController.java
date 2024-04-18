@@ -27,7 +27,6 @@ public class AuthorController {
     private final AuthorService service;
 
     @GetMapping
-    @Loggable
     public Flux<Author> getAuthors() {
         return this.service.getAuthors();
     }
