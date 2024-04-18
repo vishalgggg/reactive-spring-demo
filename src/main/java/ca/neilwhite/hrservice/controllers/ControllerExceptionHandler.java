@@ -28,14 +28,15 @@ public class ControllerExceptionHandler {
             AuthorNotFoundException.class
     })
     ResponseEntity<String> handleNotFound(RuntimeException exception) {
-        log.debug("handling exception:: " + exception);
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+        log.info("handling exception:: " + exception);
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
     }
 
-    @ExceptionHandler({DepartmentAlreadyExistsException.class,BookAlreadyExist.class})
+    @ExceptionHandler({DepartmentAlreadyExistsException.class,BookAlreadyExist.class,
+        org.springframework.dao.DataIntegrityViolationException.class})
     ResponseEntity<String> handleBadRequest(RuntimeException exception) {
         log.debug("handling exception:: " + exception);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(exception.getMessage());
     }
 
 
