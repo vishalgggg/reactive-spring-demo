@@ -67,9 +67,9 @@ public class BookService {
      * @return Mono of {@link Department}
      */
     public Mono<Book> createBook(CreateBookRequest request) {
-        return this.repository.findByName(request.name())
+        return this.repository.findByName(request.getName())
                 .flatMap(book -> Mono.error(new BookAlreadyExist(book.getName())))
-                .defaultIfEmpty(Book.builder().name(request.name()).build()).cast(Book.class)
+                .defaultIfEmpty(Book.builder().name(request.getName()).build()).cast(Book.class)
                 .flatMap(this.repository::save);
     }
 
