@@ -55,8 +55,8 @@ public class AuthorService {
     public Mono<Author> createAuthor(CreateAuthorRequest request) {
         return this.repository.save(
                 Author.builder()
-                        .firstName(request.firstName())
-                        .lastName(request.lastName())
+                        .firstName(request.getFirstName())
+                        .lastName(request.getLastName())
                         
                         .build());
     }

@@ -6,6 +6,8 @@ import ca.neilwhite.hrservice.models.requests.CreateAuthorRequest;
 import ca.neilwhite.hrservice.services.AuthorService;
 // import ca.neilwhite.hrservice.services.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -16,6 +18,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/Authors")
+@Slf4j
 public class AuthorController {
     
 
@@ -30,6 +33,7 @@ public class AuthorController {
 
     @GetMapping("/{id}")
     public Mono<Author> getAuthor(@PathVariable Long id) {
+        log.info("{}",id);
         return this.service.getAuthor(id);
     }
 
