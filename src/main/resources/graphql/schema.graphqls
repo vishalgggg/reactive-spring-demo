@@ -1,0 +1,23 @@
+type Author{
+    id: ID
+    firstName:String
+    lastName:String
+}
+type Book{
+    id:ID
+    name:String
+    authors:[Author]
+}
+type Query{
+    getAllAuthors:[Author]
+    getAllBooks:[Book]
+}
+type Mutation {
+
+    addAuthor(authorInput:AuthorInput!):Author
+}
+input AuthorInput {
+    firstName:String!
+    lastName:String!
+}
+
